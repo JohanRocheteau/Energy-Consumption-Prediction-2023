@@ -36,3 +36,21 @@
         - Etude de l'assymètrie des données via le **skew** et modification avec les **quantiles** ou les **log 1+x** :
           
           ![Skew](PhotosReadme/Skew.png)
+          
+    - **Prédictions sur les deux Targets :**
+        - **Modèles de ML utilisés, optimisations des hyperparamètres :**
+            - Random
+            - Dummy
+            - Régression Linaire (Ridge, Lasso, ElasticNet)
+            - DecisionTree (max_depth)
+            - KNN (n_neighbors)
+            - RandomForest(n_estimator, max_features...)
+            - XGBOOST (learning_rate, subsample...)
+            - SVM (C_range)
+        - **Récupération des mesures intéréssantes :**
+            - RMSE
+            - R²
+            - Durée de run du modèle
+        - **Etude des variables importantes :**
+            - Via Features Importances ou Coeff :
+            - Via SHAP et LIME :
