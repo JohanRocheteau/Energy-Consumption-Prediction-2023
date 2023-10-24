@@ -17,3 +17,14 @@
     - Mettre en place une évaluation rigoureuse des performances de la régression, et optimise les hyperparamètres et le choix d’algorithmes de ML à l’aide d’une validation croisée.
  
 ## Réalisation :
+- **Librairies principales :** Pandas, Numpy, Seaborn, Matplotlib, folium,
+- **Etapes réalisées :**
+    - **Exploration des données :**
+        - Ouvertures des données
+        - Analyse du remplissage et informations générales
+        - Etudes des variables qualitatives et quantitatives et slice sur les variables et données pertinantes pour la problèmatique (type de propriété, choix des variables de localisation, recherche des outliers et des erreurs)
+        - Etude de la localisation des batiments :
+        - Etude des variables de consommation des batiments
+        - Etude des outliers sur les deux Targets
+        - Création de nouvelles variables (Type de batiment)
+        - Etude de l'assymètrie des données via le **skew** et modification avec les **quantiles** ou les **log 1+x**
