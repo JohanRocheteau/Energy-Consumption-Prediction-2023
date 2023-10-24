@@ -2,7 +2,7 @@
 
 ## Mise en Situation :
 - **Entreprise :** Ville de Seattle
-- **Logo :**
+- **Logo :** ![Logo](PhotosReadme/LogoP3.png)
 - **But :** ville neutre en émissions de carbone en 2050
 - **Jeux de données :** [Les données](https://s3.eu-west-1.amazonaws.com/course.oc-static.com/projects/Data_Scientist_P4/2016_Building_Energy_Benchmarking.csv)
 - **Missions :**
@@ -24,7 +24,11 @@
         - Analyse du remplissage et informations générales
         - Etudes des variables qualitatives et quantitatives et slice sur les variables et données pertinantes pour la problèmatique (type de propriété, choix des variables de localisation, recherche des outliers et des erreurs)
         - Etude de la localisation des batiments :
-        - Etude des variables de consommation des batiments
+          ![Seattle](PhotosReadme/Seattle.png)
+        - Etude des variables de consommation des batiments :
+          ![Consommation](PhotosReadme/Consomations.png)
         - Etude des outliers sur les deux Targets
-        - Création de nouvelles variables (Type de batiment)
-        - Etude de l'assymètrie des données via le **skew** et modification avec les **quantiles** ou les **log 1+x**
+        - Création de nouvelles variables (Type de batiment, décénies) :
+          ![Decenies](PhotosReadme/Decenies.png)
+        - Etude de l'assymètrie des données via le **skew** et modification avec les **quantiles** ou les **log 1+x** :
+          ![Skew](PhotosReadme/Skew.png)
