@@ -53,4 +53,8 @@
             - Durée de run du modèle
         - **Etude des variables importantes :**
             - Via Features Importances ou Coeff :
+              
+              ![FeaturesImportances](PhotosReadme/variablespertinantes.png)
             - Via SHAP et LIME :
+              
+              ![SHAP](PhotosReadme/SHAP.png)
