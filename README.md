@@ -1,60 +1,88 @@
-# Projet N°3 : Anticipez les besoins en consommation de bâtiments
+# Projet_Perso_Anticipation_Besoins_Consommation_Bâtiments
 
-## Mise en Situation :
-- **Entreprise :** Ville de Seattle
-- **Logo :** ![Logo](PhotosReadme/LogoP3.png)
-- **But :** ville neutre en émissions de carbone en 2050
-- **Jeux de données :** [Les données](https://s3.eu-west-1.amazonaws.com/course.oc-static.com/projects/Data_Scientist_P4/2016_Building_Energy_Benchmarking.csv)
-- **Missions :**
-    - Etudier la consommation et les émissions des bâtiments non destinés à l’habitation.
-    - A partir de données datant de 2016 (taille et usage des bâtiments, date de construction, situation géographique, ...), prédire les émissions de CO2 et la consommation totale d’énergie de bâtiments non destinés à l’habitation pour lesquels elles n’ont pas encore été mesurées.
-    - Evaluer l’intérêt de l’"ENERGY STAR Score" pour la prédiction d’émissions, qui est fastidieux à calculer avec l’approche utilisée actuellement par votre équipe. L'intégrer dans la modélisation et juger de son intérêt.
-    - Réaliser une courte analyse exploratoire.
-    - Tester différents modèles de prédiction afin de répondre au mieux à la problématique.
-- **Contraintes :**
-    - Utiliser les primo-relevés de consommation pour en déduire des variables structurelles aux bâtiments, par exemple la nature et proportions des sources d’énergie utilisées.. 
-    - Trouver de nouvelles informations (peut-on déduire des choses intéressantes d’une simple adresse ?) et optimiser les performances en appliquant des transformations simples aux variables (normalisation, passage au log, etc.).
-    - Mettre en place une évaluation rigoureuse des performances de la régression, et optimiser les hyperparamètres et le choix d’algorithmes de ML à l’aide d’une validation croisée.
- 
-## Réalisation :
-- **Librairies principales :** Pandas, Numpy, Seaborn, Matplotlib, folium,
-- **Etapes réalisées :**
-    - **Exploration des données :**
-        - Ouverture des données
-        - Analyse du remplissage et informations générales
-        - Etudes des variables qualitatives et quantitatives et slice sur les variables et données pertinantes pour la problèmatique (type de propriété, choix des variables de localisation, recherche des outliers et des erreurs)
-        - Etude de la localisation des batiments :
-          
-          ![Seattle](PhotosReadme/Seattle.png)
-        - Etude des variables de consommation des batiments :
-          
-          ![Consommation](PhotosReadme/Consomations.png)
-        - Etude des outliers sur les deux Targets
-        - Création de nouvelles variables (Type de batiment, décénies) :
-          
-          ![Decenies](PhotosReadme/Decenies.png)
-        - Etude de l'assymètrie des données via le **skew** et modification avec les **quantiles** ou les **log 1+x** :
-          
-          ![Skew](PhotosReadme/Skew.png)
-          
-    - **Prédictions sur les deux Targets :**
-        - **Modèles de ML utilisés, optimisations des hyperparamètres :**
-            - Random
-            - Dummy
-            - Régression Linaire (Ridge, Lasso, ElasticNet)
-            - DecisionTree (max_depth)
-            - KNN (n_neighbors)
-            - RandomForest(n_estimator, max_features...)
-            - XGBOOST (learning_rate, subsample...)
-            - SVM (C_range)
-        - **Récupération des mesures intéréssantes :**
-            - RMSE
-            - R²
-            - Durée de run du modèle
-        - **Etude des variables importantes :**
-            - Via Features Importances ou Coeff :
-              
-              ![FeaturesImportances](PhotosReadme/variablespertinantes.png)
-            - Via SHAP et LIME :
-              
-              ![SHAP](PhotosReadme/SHAP.png)
+## **📌 Contexte et Objectif**
+
+**Entreprise :** Ville de Seattle  
+**Logo :** ![Logo](PhotosReadme/LogoP3.png)
+
+### **🎯 Objectif**  
+Le projet a pour objectif d'anticiper la consommation d'énergie et les émissions de CO2 des bâtiments non résidentiels de la ville de Seattle en 2016. L'objectif est de prédire ces valeurs pour des bâtiments pour lesquels les données de consommation ne sont pas disponibles, en utilisant les données des bâtiments existants.
+
+### **📂 Jeux de données**  
+- **Données :** [Consulter le dataset](https://s3.eu-west-1.amazonaws.com/course.oc-static.com/projects/Data_Scientist_P4/2016_Building_Energy_Benchmarking.csv)
+
+### **🔍 Problématiques étudiées :**  
+- Prédire la consommation d'énergie et les émissions de CO2 pour des bâtiments non résidentiels.
+- Évaluer l’intérêt de l'**ENERGY STAR Score** pour la prédiction des émissions et tester son intégration dans le modèle.
+- Identifier des variables structurelles des bâtiments à partir des primo-relevés de consommation.
+
+---
+
+## **🚀 Réalisations et Méthodologie**
+
+### **1️⃣ Exploration des données**  
+- **Ouverture et nettoyage des données :** Étude de la qualité des données, vérification des valeurs manquantes et exploration des variables.
+- **Exploration géographique :** Cartographie de la localisation des bâtiments sur la ville de Seattle.
+  
+  ![Seattle](PhotosReadme/Seattle.png)
+
+- **Analyse des variables de consommation des bâtiments :** Évaluation des variables pertinentes et des valeurs aberrantes.
+
+  ![Consommation](PhotosReadme/Consomations.png)
+
+- **Gestion des outliers et création de nouvelles variables :** Identification des outliers et création de nouvelles variables comme le **type de bâtiment** et les **décennies de construction**.
+
+  ![Decenies](PhotosReadme/Decenies.png)
+
+- **Transformation des données :** Normalisation des variables et utilisation du **skew** pour corriger les asymétries dans les distributions des données.
+
+  ![Skew](PhotosReadme/Skew.png)
+
+### **2️⃣ Prédiction de la consommation et des émissions (Targets)**  
+#### **Modèles de Machine Learning utilisés :**  
+- **Régression Linéaire** : Ridge, Lasso, ElasticNet  
+- **Arbre de Décision (Decision Tree)** : Ajustement des hyperparamètres (max_depth)  
+- **K-Nearest Neighbors (KNN)** : Optimisation du nombre de voisins (n_neighbors)  
+- **Random Forest** : Ajustement de (n_estimators, max_features...)  
+- **XGBoost** : Optimisation des paramètres (learning_rate, subsample...)  
+- **Support Vector Machine (SVM)** : Tuning de (C_range)  
+- **Dummy & Random Models** pour comparaison de base.
+
+#### **Mesures de performance :**  
+- **RMSE** (Root Mean Squared Error)  
+- **R²** (coefficient de détermination)  
+- **Temps de calcul** pour évaluer l'efficacité des modèles.
+
+### **3️⃣ Analyse des Variables Importantes**  
+- **Importance des caractéristiques (Feature Importance) :**  
+  ![FeaturesImportances](PhotosReadme/variablespertinantes.png)
+
+- **Interprétation des modèles via SHAP et LIME** :  
+  ![SHAP](PhotosReadme/SHAP.png)
+
+---
+
+## **📈 Résultats et Insights**
+
+- **Prédictions de consommation :** Les modèles ont permis de prédire la consommation d'énergie des bâtiments non résidentiels avec une précision acceptable.
+- **Importance du ENERGY STAR Score :** Son intégration a amélioré les performances des modèles, notamment en ce qui concerne les bâtiments ayant un score élevé.
+- **Recommandations :** Utiliser l'**ENERGY STAR Score** comme un indicateur fiable pour prédire la consommation énergétique des bâtiments à faible consommation.
+
+---
+
+## **🛠️ Technologies et Outils Utilisés**
+
+- **Langage :** Python 🐍
+- **Librairies :** Pandas, Numpy, Seaborn, Matplotlib, Folium, Scikit-learn, XGBoost, SHAP, LIME
+- **Environnement :** Jupyter Notebook
+- **Méthodes utilisées :** Data cleaning, Data visualization, Machine learning, Feature engineering
+
+---
+
+## **📬 Contact et Feedback**
+
+💡 Ce projet a été réalisé dans le cadre de ma **formation Data Science**. N’hésitez pas à **laisser vos suggestions** ou à **me contacter** pour en discuter !  
+
+📩 **Contact :**  
+📧 [johan.rocheteau@hotmail.fr](mailto:johan.rocheteau@hotmail.fr)  
+🔗 [LinkedIn](https://www.linkedin.com/in/johan-rocheteau)
