@@ -1,88 +1,83 @@
-# 📊 Projet N°3 : Anticipation Besoins Consommation Bâtiments
+# Energy-Consumption-Prediction-2023
 
-## **📌 Contexte et Objectif**
+![Illustration](PhotosReadme/LogoP3.png)
 
-**Entreprise :** Ville de Seattle  
-**Logo :** ![Logo](PhotosReadme/LogoP3.png)
+Projet réalisé en 2023 dans le cadre de ma formation en Data Science.  
+Objectif : prédire la consommation d’énergie et les émissions de CO2 des bâtiments non résidentiels de Seattle, à partir de leurs caractéristiques structurelles, pour aider à mieux cibler les efforts de réduction d’émissions.
 
-### **🎯 Objectif**  
-Le projet a pour objectif d'anticiper la consommation d'énergie et les émissions de CO2 des bâtiments non résidentiels de la ville de Seattle en 2016. L'objectif est de prédire ces valeurs pour des bâtiments pour lesquels les données de consommation ne sont pas disponibles, en utilisant les données des bâtiments existants.
+## Objectifs
 
-### **📂 Jeux de données**  
-- **Données :** [Consulter le dataset](https://s3.eu-west-1.amazonaws.com/course.oc-static.com/projects/Data_Scientist_P4/2016_Building_Energy_Benchmarking.csv)
+- Anticiper la consommation énergétique des bâtiments pour lesquels aucune donnée n’est disponible
+- Prédire les émissions de CO2
+- Tester la pertinence du **ENERGY STAR Score** dans les prédictions
+- Identifier les variables structurelles influentes
 
-### **🔍 Problématiques étudiées :**  
-- Prédire la consommation d'énergie et les émissions de CO2 pour des bâtiments non résidentiels.
-- Évaluer l’intérêt de l'**ENERGY STAR Score** pour la prédiction des émissions et tester son intégration dans le modèle.
-- Identifier des variables structurelles des bâtiments à partir des primo-relevés de consommation.
+## Données
 
----
+- **Source** : Ville de Seattle  
+- **Lien** : [Télécharger le dataset](https://s3.eu-west-1.amazonaws.com/course.oc-static.com/projects/Data_Scientist_P4/2016_Building_Energy_Benchmarking.csv)
 
-## **🚀 Réalisations et Méthodologie**
+## Méthodologie
 
-### **1️⃣ Exploration des données**  
-- **Ouverture et nettoyage des données :** Étude de la qualité des données, vérification des valeurs manquantes et exploration des variables.
-- **Exploration géographique :** Cartographie de la localisation des bâtiments sur la ville de Seattle.
-  
+### 1. Exploration et préparation
+
+- Analyse des données, valeurs manquantes, doublons, typage
+- Cartographie des bâtiments (via latitude/longitude)  
   ![Seattle](PhotosReadme/Seattle.png)
 
-- **Analyse des variables de consommation des bâtiments :** Évaluation des variables pertinentes et des valeurs aberrantes.
-
+- Analyse des variables de consommation et outliers  
   ![Consommation](PhotosReadme/Consomations.png)
 
-- **Gestion des outliers et création de nouvelles variables :** Identification des outliers et création de nouvelles variables comme le **type de bâtiment** et les **décennies de construction**.
+- Création de variables : type de bâtiment, décennie de construction  
+  ![Décennies](PhotosReadme/Decenies.png)
 
-  ![Decenies](PhotosReadme/Decenies.png)
-
-- **Transformation des données :** Normalisation des variables et utilisation du **skew** pour corriger les asymétries dans les distributions des données.
-
+- Normalisation et correction des distributions (skew)  
   ![Skew](PhotosReadme/Skew.png)
 
-### **2️⃣ Prédiction de la consommation et des émissions (Targets)**  
-#### **Modèles de Machine Learning utilisés :**  
-- **Régression Linéaire** : Ridge, Lasso, ElasticNet  
-- **Arbre de Décision (Decision Tree)** : Ajustement des hyperparamètres (max_depth)  
-- **K-Nearest Neighbors (KNN)** : Optimisation du nombre de voisins (n_neighbors)  
-- **Random Forest** : Ajustement de (n_estimators, max_features...)  
-- **XGBoost** : Optimisation des paramètres (learning_rate, subsample...)  
-- **Support Vector Machine (SVM)** : Tuning de (C_range)  
-- **Dummy & Random Models** pour comparaison de base.
+### 2. Modélisation
 
-#### **Mesures de performance :**  
-- **RMSE** (Root Mean Squared Error)  
-- **R²** (coefficient de détermination)  
-- **Temps de calcul** pour évaluer l'efficacité des modèles.
+#### Modèles testés :
 
-### **3️⃣ Analyse des Variables Importantes**  
-- **Importance des caractéristiques (Feature Importance) :**  
-  ![FeaturesImportances](PhotosReadme/variablespertinantes.png)
+- Régressions : Ridge, Lasso, ElasticNet
+- Arbres de décision
+- KNN
+- Random Forest
+- XGBoost
+- SVM
+- Modèles de base (Dummy, Random)
 
-- **Interprétation des modèles via SHAP et LIME** :  
+#### Évaluation :
+
+- **RMSE**  
+- **R²**  
+- **Temps de calcul**
+
+### 3. Interprétation des résultats
+
+- Analyse des variables importantes  
+  ![Features](PhotosReadme/variablespertinantes.png)
+
+- Explication locale via **SHAP** et **LIME**  
   ![SHAP](PhotosReadme/SHAP.png)
 
----
+## Résultats
 
-## **📈 Résultats et Insights**
+- Les modèles permettent de prédire la consommation avec une précision correcte
+- Le **ENERGY STAR Score** améliore significativement les résultats
+- Les variables structurelles (surface, année de construction…) jouent un rôle clé
+- Recommandation : utiliser le ENERGY STAR Score pour cibler les bâtiments prioritaires dans les politiques énergétiques
 
-- **Prédictions de consommation :** Les modèles ont permis de prédire la consommation d'énergie des bâtiments non résidentiels avec une précision acceptable.
-- **Importance du ENERGY STAR Score :** Son intégration a amélioré les performances des modèles, notamment en ce qui concerne les bâtiments ayant un score élevé.
-- **Recommandations :** Utiliser l'**ENERGY STAR Score** comme un indicateur fiable pour prédire la consommation énergétique des bâtiments à faible consommation.
+## Technologies utilisées
 
----
+- **Langage** : Python  
+- **Librairies** : pandas, numpy, seaborn, matplotlib, scikit-learn, XGBoost, SHAP, LIME, folium  
+- **Environnement** : Jupyter Notebook  
+- **Méthodes** : Data cleaning, ML supervisé, Feature engineering, Interprétabilité
 
-## **🛠️ Technologies et Outils Utilisés**
+## Contact
 
-- **Langage :** Python 🐍
-- **Librairies :** Pandas, Numpy, Seaborn, Matplotlib, Folium, Scikit-learn, XGBoost, SHAP, LIME
-- **Environnement :** Jupyter Notebook
-- **Méthodes utilisées :** Data cleaning, Data visualization, Machine learning, Feature engineering
+Projet réalisé en 2023 dans le cadre d’une formation en Data Science.  
+Pour toute question ou retour :
 
----
-
-## **📬 Contact et Feedback**
-
-💡 Ce projet a été réalisé dans le cadre de ma **formation Data Science**. N’hésitez pas à **laisser vos suggestions** ou à **me contacter** pour en discuter !  
-
-📩 **Contact :**  
-📧 [johan.rocheteau@hotmail.fr](mailto:johan.rocheteau@hotmail.fr)  
-🔗 [LinkedIn](https://www.linkedin.com/in/johan-rocheteau)
+- **Email** : [johan.rocheteau@hotmail.fr](mailto:johan.rocheteau@hotmail.fr)  
+- **LinkedIn** : [linkedin.com/in/johan-rocheteau](https://www.linkedin.com/in/johan-rocheteau)
